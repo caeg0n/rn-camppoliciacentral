@@ -7,8 +7,7 @@ export const GET_IS_REGISTERED = "GET_IS_REGISTERED";
 
 const URL_BASE = "http://192.168.7.17:3000";
 const API_URL = "https://mocki.io/v1/8cb770c0-6948-4d96-81bf-83d21da310b3";
-const UUID_URL = URL_BASE + "/is_registered";
-
+const UUID_URL = URL_BASE + "/is_central_registered";
 
 export const getUUID = () => {
   try {
