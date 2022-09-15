@@ -32,7 +32,7 @@ export default function Qrcode({ navigation }) {
       };
       fetch(URL_BASE + "/register_device.json", requestOptions)
         .then((response) => response.json())
-        .then((respData) => (respData.status == "ok") ? navigation.navigate("Home"):null);
+        .then((respData) => console.log(respData));
     } catch (error) {}
   };
 
@@ -51,7 +51,7 @@ export default function Qrcode({ navigation }) {
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && (
-        <Button title={"Aperte para scanear novamente"} onPress={() => setScanned(false)} />
+        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
       )}
     </View>
   );

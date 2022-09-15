@@ -7,7 +7,6 @@ import AwesomeButtonRick from "react-native-really-awesome-button/src/themes/ric
 import { useFocusEffect } from "@react-navigation/native";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //import AsyncStorage from "@react-native-async-storage/async-storage";
-
 export default function Home({ navigation }) {
   let to = useRef(null);
   const [emergency_count, setEmergencyCount] = useState(5);
@@ -44,8 +43,8 @@ export default function Home({ navigation }) {
     navigation.navigate("Register");
   }
 
-  function RenderABRegister(props) {
-    const isRegistered = props.isRegistered;
+  function RenderABRegister() {
+    // const isRegistered = props.isRegistered;
     if (isRegistered) {
       return (
         <AwesomeButtonRick
@@ -53,7 +52,10 @@ export default function Home({ navigation }) {
           type="secondary"
           width={wp('90%')}
           height={hp('10%')}
-          disabled={false}
+          disabled={isRegistered != 'true'}
+          backgroundDarker={ isRegistered == 'false' ? "grey" : "#000" }
+          backgroundColor={ isRegistered == 'false' ? "grey" : "blue" }
+          textColor={ isRegistered == 'false' ? "white" : "#FFF" }
           onPress={register}
         >
           REGISTRAR DISPOSITIVO
@@ -84,9 +86,10 @@ export default function Home({ navigation }) {
       <AwesomeButtonRick
         style={styles.ab_denuncia}
         type="disabled"
-        backgroundDarker={"#000"}
-        backgroundColor={"#00FF00"}
-        textColor={"#000"}
+        backgroundDarker={isRegistered == 'true' ? "#000" : "grey"}
+        backgroundColor={isRegistered == 'true' ? "#00FF00" : "grey"}
+        textColor={isRegistered == 'true' ? "#000" : "white"}
+        disabled={isRegistered != 'true'}
         height={hp('10%')}
         width={wp('90%')}
       >
@@ -96,9 +99,10 @@ export default function Home({ navigation }) {
       <AwesomeButtonRick
         style={styles.ab_atividade_suspeita}
         type="disabled"
-        backgroundDarker={"#000"}
-        backgroundColor={"#FF6600"}
-        textColor={"#000"}
+        backgroundDarker={isRegistered == 'true' ? "#000" : "grey"}
+        backgroundColor={isRegistered == 'true' ? "#FF6600" : "grey"}
+        textColor={isRegistered == 'true' ? "#000" : "white"}
+        disabled={isRegistered != 'true'}
         height={hp('10%')}
         width={wp('90%')}
       >
@@ -108,16 +112,17 @@ export default function Home({ navigation }) {
       <AwesomeButtonRick
         style={styles.ab_emergencia}
         type="disabled"
-        backgroundDarker={"#000"}
-        backgroundColor={"#FF0000"}
-        textColor={"#000"}
+        backgroundDarker={isRegistered == 'true' ? "#000" : "grey"}
+        backgroundColor={isRegistered == 'true' ? "#FF0000" : "grey"}
+        textColor={isRegistered == 'true' ? "#000" : "white"}
+        disabled={isRegistered != 'true'}
         width={wp('90%')}
         height={hp('10%')}
         onPress={buttonClickedHandler}
       >
         EMERGÊNCIAS
       </AwesomeButtonRick>
-      <RenderABRegister isRegistered={isRegistered != 'true'} />
+      <RenderABRegister />
     </View>
   );
 }

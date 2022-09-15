@@ -4,7 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/screens/Home';
 import Register from './src/screens/Register';
-import Qrcode from './src/screens/Qrcode';
+import RegisterInfo from './src/screens/RegisterInfo';
+// import Qrcode from './src/screens/Qrcode';
 import { Provider } from 'react-redux';
 import { Store, persistor } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -18,7 +19,8 @@ export default function App (){
       <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home}></Stack.Screen>
         <Stack.Screen name="Register" component={Register}></Stack.Screen>
-        <Stack.Screen name="Qrcode" component={Qrcode}></Stack.Screen>
+        <Stack.Screen name="RegisterInfo" component={RegisterInfo}></Stack.Screen>
+        {/* <Stack.Screen name="Qrcode" component={Qrcode}></Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
     </PersistGate>
