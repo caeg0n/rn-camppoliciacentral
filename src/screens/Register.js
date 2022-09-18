@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { DEV_API_BASE, PROD_API_BASE } from "@env";
 import { useSelector } from "react-redux";
-
-if (__DEV__) {
-  var URL_BASE = DEV_API_BASE;
-} else {
-  var URL_BASE = PROD_API_BASE;
-}
 
 export default function Qrcode({ navigation }) {
   const { uuid } = useSelector((state) => state.userReducer);
@@ -24,16 +17,7 @@ export default function Qrcode({ navigation }) {
 
   const handleBarCodeScanned = async ({ data }) => {
     setScanned(true);
-    // try {
-    //   const requestOptions = {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ citizen_device_id: data, central_device_id: uuid }),
-    //   };
-    //   fetch(URL_BASE + "/register_device.json", requestOptions)
-    //     .then((response) => response.json())
-    //     .then((respData) => (respData.status == "ok") ? navigation.navigate("RegisterInfo"):null);
-    // } catch (error) {}
+    navigation.navigate("RegisterInfo",{ citizen_device_id: data, central_device_id: uuid })
   };
 
   if (hasPermission === null) {

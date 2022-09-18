@@ -1,9 +1,17 @@
 import * as React from "react";
+import { DEV_API_BASE, PROD_API_BASE } from "@env";
 import { Text, View, TextInput, StyleSheet, Button } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import Constants from "expo-constants";
 
-export default function RegisterInfo({ navigation }) {
+if (__DEV__) {
+  var URL_BASE = DEV_API_BASE;
+} else {
+  var URL_BASE = PROD_API_BASE;
+}
+
+export default function RegisterInfo({ route, navigation }) {
+  const { citizen_device_id, central_device_id } = route.params;
   const {
     register,
     setValue,
@@ -19,8 +27,29 @@ export default function RegisterInfo({ navigation }) {
     },
   });
 
+  // useEffect(() => {
+  //   console.log(citizen_device_id, central_device_id)
+  // },[]);
+
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          cel: data.cel,
+          reference: data.reference,
+          citizen_device_id: citizen_device_id,
+          central_device_id: central_device_id,
+        }),
+      };
+      fetch(URL_BASE + "/register_device.json", requestOptions)
+        .then((response) => response.json())
+        .then((respData) =>
+          respData.status == "ok" ? navigation.navigate("Home") : null
+        );
+    } catch (error) {}
   };
 
   const onChange = (arg) => {
@@ -29,7 +58,7 @@ export default function RegisterInfo({ navigation }) {
     };
   };
 
-  console.log("errors", errors);
+  // console.log("errors", errors);
 
   return (
     <View style={styles.container}>

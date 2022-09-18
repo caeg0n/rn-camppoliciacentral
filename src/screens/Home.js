@@ -7,6 +7,7 @@ import AwesomeButtonRick from "react-native-really-awesome-button/src/themes/ric
 import { useFocusEffect } from "@react-navigation/native";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function Home({ navigation }) {
   let to = useRef(null);
   const [emergency_count, setEmergencyCount] = useState(5);
@@ -36,8 +37,8 @@ export default function Home({ navigation }) {
     const newUuid = v4();
     if (uuid.length < 1) {
       dispatch(setUUID(newUuid));
-    }
-  }, []);
+    }    
+  },[]);
 
   function register() {
     navigation.navigate("Register");
