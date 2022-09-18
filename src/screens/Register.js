@@ -24,16 +24,16 @@ export default function Qrcode({ navigation }) {
 
   const handleBarCodeScanned = async ({ data }) => {
     setScanned(true);
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ citizen_device_id: data, central_device_id: uuid }),
-      };
-      fetch(URL_BASE + "/register_device.json", requestOptions)
-        .then((response) => response.json())
-        .then((respData) => (respData.status == "ok") ? navigation.navigate("Home"):null);
-    } catch (error) {}
+    // try {
+    //   const requestOptions = {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ citizen_device_id: data, central_device_id: uuid }),
+    //   };
+    //   fetch(URL_BASE + "/register_device.json", requestOptions)
+    //     .then((response) => response.json())
+    //     .then((respData) => (respData.status == "ok") ? navigation.navigate("RegisterInfo"):null);
+    // } catch (error) {}
   };
 
   if (hasPermission === null) {
